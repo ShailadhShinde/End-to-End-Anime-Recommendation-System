@@ -1,3 +1,4 @@
 *ssimilatiry.pkl filter=lfs diff=lfs merge=lfs -text
 ssimilatiry.pkl filter=lfs diff=lfs merge=lfs -text
 ssimilarity.pkl filter=lfs diff=lfs merge=lfs -text
+anime.pkl filter=lfs diff=lfs merge=lfs -text
