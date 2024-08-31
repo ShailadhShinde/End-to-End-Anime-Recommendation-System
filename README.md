@@ -1,4 +1,4 @@
-# 🎈 Blank app template
+![image](https://github.com/user-attachments/assets/97c8addc-ef0f-4c7c-8ffb-9b80bf44008d)# 🎈 Blank app template
 
 A simple Streamlit app template for you to modify!
 
@@ -70,7 +70,7 @@ Streamlit framework was used to built the web app.
 
 About the Dataset
 
-The Dataset contains the following fields(ID title	link	code	rank	popularity	members	score	summary	studio	episode	producer	licensor	genre	theme	duration	imgsrc)
+The Dataset contains the following fields (ID title	link	code	rank	popularity	members	score	summary	studio	episode	producer	licensor	genre	theme	duration	imgsrc)
 
 Beautfil Soup was used to scrape data from https://myanimelist.net/ ( Data Gathering.ipynb / Data Gathering.ipynb )
 
@@ -81,76 +81,58 @@ Beautfil Soup was used to scrape data from https://myanimelist.net/ ( Data Gathe
    - Selected feature (genre, licensor, theme) were concatenated into a single feature vector named combined. And then each unique word from the vector was converted into a separate feature represented by 1 or 0
    - Null values in Numeric columns(popularity, episode, duration) were filled using KNN Imputer
    - Numeric columns were converted to categorical by defining a specific range for the particular columns
-      - Episode - Ranges [1,2,3-4,5-9,10-14,15-20,21-26,27-30,31-49,50-52,53+]
-      - Score - Ranges [5,5-6,6-7,7-8,8+]
-      - Duration - Ranges [1-5,6-10,11-15,16-20,21-25,26-35,35+]
-      - Popularity - Get MAX value 
+      - episode - Ranges [1,2,3-4,5-9,10-14,15-20,21-26,27-30,31-49,50-52,53+]
+      - score - Ranges [5,5-6,6-7,7-8,8+]
+      - duration - Ranges [1-5,6-10,11-15,16-20,21-25,26-35,35+]
+      - popularity - Get MAX value and split the list having a static range of 150 between numbers (0-150, 151-300, 301-450 , ....)
+   - After changing numeric-categorical applied one-hot Encoding and concatenated the one hot encoded matrix to rest of the dataset
+   - Drop columns not having 1s or 0s as their value converting it into a matrix
+   - Used Truncated SVD to reduce the dimensionality of the matrix
 
 - ### Things I tried but did not work  <a name="TT"></a>
 
-  - preprocessing in ['mean_std', 'minmax', 'raw']
-  - cnn_type in ['simple','double']
-  - conv_layers in [[64,128,128,64], [32, 64, 128,128], [64, 128, 256]]
-  - FE in filters on images ['gaussian','laplace',etc]
-  - transfer learning ['Vgg16']
-  - various custom cnn architecture
+  - using Columns [rank,members,summary,producer] and their unique combination like genre+theme, theme+genre etc.
+  - raw numeric columns [episode,score,duration,popularity]
 
+  
 - ### Evaluation  <a name="eval"></a>
-  The evaluation metric used is Log-Loss (Cross -Entropy)
-   ![logloss](https://github.com/ShailadhShinde/CNN/blob/main/assets/eval.JPG)
 
+   Since the Content Based filtering is a way to solve the cold start problem and the data was scraped from the internet I did not use any evaluvation metric.
+  Also I am familiar with most of the anime to test the model.  
 
-- ### Architecture <a name="arch"></a>
+- ### Model <a name="arch"></a>
 
-`
+   Cosine similarity measure was used to get the similarity matrix . Yes, it works on binary data as aswell.
 
-    Input Shape: (75, 75, 3)
+  Streamlit was used to create thw web app ()
 
-    Conv2D (64 filters, 3x3 kernel, ReLU) 
-    Conv2D (64 filters, 3x3 kernel, ReLU)
-    Conv2D (64 filters, 3x3 kernel, ReLU)
-    MaxPooling2D (3x3 pool, strides 2x2)
+- ### Post-Processing
 
-    Conv2D (128 filters, 3x3 kernel, ReLU)
-    Conv2D (128 filters, 3x3 kernel, ReLU)
-    Conv2D (128 filters, 3x3 kernel, ReLU)
-    MaxPooling2D (2x2 pool, strides 2x2)
-
-    Conv2D (128 filters, 3x3 kernel, ReLU)
-    MaxPooling2D (2x2 pool, strides 2x2)
-
-    Conv2D (256 filters, 3x3 kernel, ReLU)
-    MaxPooling2D (2x2 pool, strides 2x2)
-
-    Flatten
-
-    Dense (1024 units, ReLU)
-    Dropout (0.4)
-
-    Dense (512 units, ReLU)
-    Dropout (0.2)
-
-    Dense (1 unit, Sigmoid)
-    
-
-
+  Converted matrix form float64 to float16 as Streamlit has restriction of 1 GB RAM 
+  
+   
 ----
 
 ## ✨ Demo <a name="demo"></a>
 
-Inputs
+Home
+   <p align="center">
+  <img width="60%" height ="40%"  src="https://github.com/ShailadhShinde/RecommendationSystems/blob/main/assets/home.JPG">
+ </p>
 
+ Romance Anime
    <p align="center">
-  <img width="60%" height ="40%"  src="https://github.com/ShailadhShinde/CNN/blob/main/assets/1.JPG">
+  <img width="60%" height ="300"  src="https://github.com/ShailadhShinde/RecommendationSystems/blob/main/assets/romance.JPG">
  </p>
+
+ Crime Anime
    <p align="center">
-  <img width="60%" height ="300"  src="https://github.com/ShailadhShinde/CNN/blob/main/assets/2.JPG">
+  <img width="60%" height ="400"  src="https://github.com/ShailadhShinde/RecommendationSystems/blob/main/assets/crime.JPG">
  </p>
+
+ Isekai Anime
    <p align="center">
-  <img width="60%" height ="400"  src="https://github.com/ShailadhShinde/CNN/blob/main/assets/ship.png">
- </p>
-   <p align="center">
-  <img width="60%" height ="400"  src="https://github.com/ShailadhShinde/CNN/blob/main/assets/iceberg.png">
+  <img width="60%" height ="400"  src="https://github.com/ShailadhShinde/RecommendationSystems/blob/main/assets/isekai.JPG">
  </p>
  
 
