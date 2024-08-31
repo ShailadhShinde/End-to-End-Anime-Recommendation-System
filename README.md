@@ -76,7 +76,15 @@ Beautfil Soup was used to scrape data from https://myanimelist.net/ ( Data Gathe
 
 
 - ### Preprocessing  <a name="pp"></a>
-   - Removal of empty / unnecessaru columns was done after scraping the data  
+   - Removal of empty / unnecessary rows was done after scraping the data in excel
+   - Special characters ([,],",',{,}) were removed from columns (genre, producer, theme, licensor, studio, theme) and converted into list
+   - Selected feature (genre, licensor, theme) were concatenated into a single feature vector named combined. And then each unique word from the vector was converted into a separate feature represented by 1 or 0
+   - Null values in Numeric columns(popularity, episode, duration) were filled using KNN Imputer
+   - Numeric columns were converted to categorical by defining a specific range for the particular columns
+      - Episode - Ranges [1,2,3-4,5-9,10-14,15-20,21-26,27-30,31-49,50-52,53+]
+      - Score - Ranges [5,5-6,6-7,7-8,8+]
+      - Duration - Ranges [1-5,6-10,11-15,16-20,21-25,26-35,35+]
+      - Popularity - Get MAX value 
 
 - ### Things I tried but did not work  <a name="TT"></a>
 
