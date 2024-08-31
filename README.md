@@ -28,6 +28,10 @@ A simple Streamlit app template for you to modify!
 ![Python - Version](https://img.shields.io/badge/PYTHON-3.9+-blue?style=for-the-badge&logo=python&logoColor=white)
 
 </div>
+
+
+
+
 This project focuses on:
 
 - Exploratory Data Analysis
@@ -47,12 +51,12 @@ This project focuses on:
 
 ### 📋 Table of Contents
 - [Overview](#overview)
-  - [About the dataset](#atd)
-  - [Sample Selection](#ss)
+  - [About the Dataset](#atd)
   - [Preprocessing](#pp)
-  - [Feature Engineering](#fe)
+  - [Things I tried but did not work](#TT)
   - [Evaluation](#eval)
-  - [Model](#model)
+  - [Architecture](#arch)
+- [Demo](#demo)
 - [Results](#results)
 - [Getting Started](#gs)
   - [Prerequisites](#pr)
@@ -60,58 +64,97 @@ This project focuses on:
 
 ###  📌 Project Overview  <a name="overview"></a>
 
-This project is a Notebook about time series forcasting for store sales.The purpose is to predict sales for 1000s of products sold at favourite stores located in South America’s west coast Ecuador. [Click here for more INFO](https://www.kaggle.com/competitions/store-sales-time-series-forecasting/data)
+This project is an End to End Anime(a style of Japanese film and television animation, typically aimed at adults as well as children) Recommendation System.
+Content Based Filtering is used to recommend other similar anime. The Cosine similarity metric was used to generate a similarity score between one anime and another.
+Streamlit framework was used to built the web app.
 
-- ### About the dataset  <a name="atd"></a>
+About the Dataset
 
-  `The train data` contains time series of the stores and the product families combination. The sales column gives the total sales for a product family at a particular store at a given date. Fractional values are possible since products can be sold in fractional units (1.5 kg of cheese, for instance, as opposed to 1 bag of chips).The onpromotion column gives the total number of items in a product family that were being promoted at a store at a given date.
+The Dataset contains the following fields(ID title	link	code	rank	popularity	members	score	summary	studio	episode	producer	licensor	genre	theme	duration	imgsrc)
 
-  `Stores` data gives some information about stores such as city, state, type, cluster.
+Beautfil Soup was used to scrape data from https://myanimelist.net/ ( Data Gathering.ipynb / Data Gathering.ipynb )
 
-  `Transaction` data is highly correlated with train's sales column. You can understand the sales patterns of the stores.
 
-  `Holidays and events` data is a meta data. This data is quite valuable to understand past sales, trend and seasonality components. However, it needs to be arranged. You are going to find a comprehensive data manipulation for this data. That part will be one of the most important chapter in this notebook.
-
-  `Daily Oil Price data` is another data which will help us. Ecuador is an oil-dependent country and it's economical health is highly vulnerable to shocks in oil prices. That's why, it will help us to understand which product families affected in positive or negative way by oil price.
-
-- ### Sample Selection  <a name="ss"></a>
-
-  Used 2017 data to extract and construct samples
-
-  train date: 20170228 - 20170830
-
-  validation: 20170725 - 20170808
 - ### Preprocessing  <a name="pp"></a>
-  Filled missing or negtive promotion and target values with 0.
+   - Removal of empty / unnecessaru columns was done after scraping the data  
 
-- ### Feature Engineering  <a name="fe"></a>
- 1. #### Basic features
-    * category features: store, family, city, state, type
-    * promotion
+- ### Things I tried but did not work  <a name="TT"></a>
 
- 2. #### Statitical features:
-    we use some methods to stat some targets for different keys in different time windows
-    * time windows
-      * nearest days: [1,3,5,7,14,30,60,140]
-      * key：store, store x family 
-    * target: promotion, unit_sales, zeros
-    * method
-      * mean, median, max, min, std
-  
+  - preprocessing in ['mean_std', 'minmax', 'raw']
+  - cnn_type in ['simple','double']
+  - conv_layers in [[64,128,128,64], [32, 64, 128,128], [64, 128, 256]]
+  - FE in filters on images ['gaussian','laplace',etc]
+  - transfer learning ['Vgg16']
+  - various custom cnn architecture
+
 - ### Evaluation  <a name="eval"></a>
-  The evaluation metric used is Root Mean Squared Logarithmic Error. RMSLE = $\sqrt{\frac{1}{n} \sum_{i=1}^n (\log(p_i + 1) - \log(a_i+1))^2 }$
+  The evaluation metric used is Log-Loss (Cross -Entropy)
+   ![logloss](https://github.com/ShailadhShinde/CNN/blob/main/assets/eval.JPG)
 
-- ### Model <a name="model"></a>
-    16 Light Gradient Boosting Model trained for each day
+
+- ### Architecture <a name="arch"></a>
+
+`
+
+    Input Shape: (75, 75, 3)
+
+    Conv2D (64 filters, 3x3 kernel, ReLU) 
+    Conv2D (64 filters, 3x3 kernel, ReLU)
+    Conv2D (64 filters, 3x3 kernel, ReLU)
+    MaxPooling2D (3x3 pool, strides 2x2)
+
+    Conv2D (128 filters, 3x3 kernel, ReLU)
+    Conv2D (128 filters, 3x3 kernel, ReLU)
+    Conv2D (128 filters, 3x3 kernel, ReLU)
+    MaxPooling2D (2x2 pool, strides 2x2)
+
+    Conv2D (128 filters, 3x3 kernel, ReLU)
+    MaxPooling2D (2x2 pool, strides 2x2)
+
+    Conv2D (256 filters, 3x3 kernel, ReLU)
+    MaxPooling2D (2x2 pool, strides 2x2)
+
+    Flatten
+
+    Dense (1024 units, ReLU)
+    Dropout (0.4)
+
+    Dense (512 units, ReLU)
+    Dropout (0.2)
+
+    Dense (1 unit, Sigmoid)
+    
+
 
 ----
 
+## ✨ Demo <a name="demo"></a>
+
+Inputs
+
+   <p align="center">
+  <img width="60%" height ="40%"  src="https://github.com/ShailadhShinde/CNN/blob/main/assets/1.JPG">
+ </p>
+   <p align="center">
+  <img width="60%" height ="300"  src="https://github.com/ShailadhShinde/CNN/blob/main/assets/2.JPG">
+ </p>
+   <p align="center">
+  <img width="60%" height ="400"  src="https://github.com/ShailadhShinde/CNN/blob/main/assets/ship.png">
+ </p>
+   <p align="center">
+  <img width="60%" height ="400"  src="https://github.com/ShailadhShinde/CNN/blob/main/assets/iceberg.png">
+ </p>
+ 
+
+----
 ## 💫 Results <a name="results"></a>
 
-  Got a good score resulting in top 1 % of the kaggle leader board
+  The top score of the competiton was 0.08227 usign 100s of models.
+  
+  Got a score of 0.15943 using only a single model 😄
   
    <p align="center">
-  <img width="60%" src="https://github.com/ShailadhShinde/Time_series/blob/main/assets/score.JPG">
+  <img width="60%" src="https://github.com/ShailadhShinde/CNN/blob/main/assets/score.jpg">
  </p>
 
   
@@ -126,6 +169,6 @@ This project is a Notebook about time series forcasting for store sales.The purp
  Before starting to train a model, make sure to download the dataset from <a href="https://www.kaggle.com/competitions/store-sales-time-series-forecasting/data" target="_blank">here </a> or add it to your notebook
  ### 🐳 Setting up and Running the project
 
- Just download/copy the files `time_series.py / time_Series.ipynb ` and `EDA.ipynb / EDA.py ` and run them
+ Just download/copy the files `iceberg.py / iceberg.ipynb ` and `EDA.ipynb / EDA.py ` and run them
 
   
