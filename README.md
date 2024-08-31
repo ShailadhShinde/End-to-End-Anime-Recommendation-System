@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/97c8addc-ef0f-4c7c-8ffb-9b80bf44008d)# 🎈 Blank app template
+# 🎈 Blank app template
 
 A simple Streamlit app template for you to modify!
 
@@ -68,7 +68,7 @@ This project is an End to End Anime(a style of Japanese film and television anim
 Content Based Filtering is used to recommend other similar anime. The Cosine similarity metric was used to generate a similarity score between one anime and another.
 Streamlit framework was used to built the web app.
 
-About the Dataset
+- ### About the Dataset
 
 The Dataset contains the following fields (ID title	link	code	rank	popularity	members	score	summary	studio	episode	producer	licensor	genre	theme	duration	imgsrc)
 
@@ -76,6 +76,7 @@ Beautfil Soup was used to scrape data from https://myanimelist.net/ ( Data Gathe
 
 
 - ### Preprocessing  <a name="pp"></a>
+
    - Removal of empty / unnecessary rows was done after scraping the data in excel
    - Special characters ([,],",',{,}) were removed from columns (genre, producer, theme, licensor, studio, theme) and converted into list
    - Selected feature (genre, licensor, theme) were concatenated into a single feature vector named combined. And then each unique word from the vector was converted into a separate feature represented by 1 or 0
@@ -113,7 +114,9 @@ Beautfil Soup was used to scrape data from https://myanimelist.net/ ( Data Gathe
    
 ----
 
-## ✨ Demo <a name="demo"></a>
+## ✨ Demo - 💫 Results <a name="results"></a> <a name="demo"></a>
+
+[Live Demonstration](https://sanime-recommendations.streamlit.app/)
 
 Home
    <p align="center">
@@ -122,33 +125,21 @@ Home
 
  Romance Anime
    <p align="center">
-  <img width="60%" height ="300"  src="https://github.com/ShailadhShinde/RecommendationSystems/blob/main/assets/romance.JPG">
+  <img width="60%" height ="100%"  src="https://github.com/ShailadhShinde/RecommendationSystems/blob/main/assets/romance.JPG">
  </p>
 
  Crime Anime
    <p align="center">
-  <img width="60%" height ="400"  src="https://github.com/ShailadhShinde/RecommendationSystems/blob/main/assets/crime.JPG">
+  <img width="60%" height ="100%"  src="https://github.com/ShailadhShinde/RecommendationSystems/blob/main/assets/crime.JPG">
  </p>
 
  Isekai Anime
    <p align="center">
-  <img width="60%" height ="400"  src="https://github.com/ShailadhShinde/RecommendationSystems/blob/main/assets/isekai.JPG">
+  <img width="60%" height ="100%"  src="https://github.com/ShailadhShinde/RecommendationSystems/blob/main/assets/isekai.JPG">
  </p>
  
 
 ----
-## 💫 Results <a name="results"></a>
-
-  The top score of the competiton was 0.08227 usign 100s of models.
-  
-  Got a score of 0.15943 using only a single model 😄
-  
-   <p align="center">
-  <img width="60%" src="https://github.com/ShailadhShinde/CNN/blob/main/assets/score.jpg">
- </p>
-
-  
----
 
 ## 🚀 Getting Started <a name="gs"></a>
 
@@ -156,9 +147,24 @@ Home
  
  - <b>Dataset prerequisite for training</b>:
  
- Before starting to train a model, make sure to download the dataset from <a href="https://www.kaggle.com/competitions/store-sales-time-series-forecasting/data" target="_blank">here </a> or add it to your notebook
+ Before starting to train a model, make sure to download the dataset from <a href="https://github.com/ShailadhShinde/RecommendationSystems/blob/main/assets/anime_details%20-%20Copy.csv" target="_blank"> here </a> or add it to your notebook
+ 
  ### 🐳 Setting up and Running the project
 
- Just download/copy the files `iceberg.py / iceberg.ipynb ` and `EDA.ipynb / EDA.py ` and run them
+To Scrape Data - Download/copy the files `Data Gathering.py / Data Gathering.ipynb ` and run them 
+
+To create model - Download/copy the files `anime.py / anime.ipynb ` and run them 
+
+                                 OR
+
+To Run thw Web App - 
+
+1. Clone the git Repository 
+2. Create account on Streamlit Community Cloud > Login > Create New App > add your Repository and Save
+
+   
+
+
+ 
 
   
