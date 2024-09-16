@@ -13,16 +13,16 @@
 
 This project focuses on:
 
-- Exploratory Data Analysis
-- 
--
--
+- Data Analysis
+- Advance Preprocessing and Feature Creation
+- Recommendation using Cosine Similarity
+- Implementaion of Web App using Streamlit 
 
 #### -- Project Status: [Completed]
 
-#### -- time_series.py / time_Series.ipynb - Contains code for the project
+#### -- Data Gathering.py / Data Gathering.ipynb - Contains code for the web scraping
 
-#### -- eda-time-series.ipynb / EDA.py - Exploratory Data Analysis [Click to view](https://www.kaggle.com/code/shailadh/eda-time-series?scriptVersionId=190759981)
+#### -- anime.ipynb / anime.py  - Code of the project
 
 ----
 
@@ -84,7 +84,7 @@ Beautfil Soup was used to scrape data from https://myanimelist.net/ ( Data Gathe
 
    Cosine similarity measure was used to get the similarity matrix . Yes, it works on binary data as aswell.
 
-  Streamlit was used to create thw web app ()
+  Streamlit was used to create the web app ()
 
 - ### Post-Processing <a name="post"></a>
 
