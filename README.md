@@ -34,9 +34,9 @@ This project focuses on:
   - [Preprocessing](#pp)
   - [Things I tried but did not work](#TT)
   - [Evaluation](#eval)
-  - [Architecture](#arch)
-- [Demo](#demo)
-- [Results](#results)
+  - [Model](#arch)
+  - [Post Processing](#post)
+- [Demo](#demo) / [Results](#results)
 - [Getting Started](#gs)
   - [Prerequisites](#pr)
 
@@ -86,7 +86,7 @@ Beautfil Soup was used to scrape data from https://myanimelist.net/ ( Data Gathe
 
   Streamlit was used to create thw web app ()
 
-- ### Post-Processing
+- ### Post-Processing <a name="post"></a>
 
   Converted matrix form float64 to float16 as Streamlit has restriction of 1 GB RAM 
   
